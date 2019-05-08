@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Thu May 09 00:21:03 EET 2019
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\lenovo\\.m2\\repository\\org\\springframework\\spring-web\\4.2.2.RELEASE\\spring-web-4.2.2.RELEASE.jar=C\:\\Users\\lenovo\\Desktop\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\Notes\\WEB-INF\\lib\\spring-web-4.2.2.RELEASE.jar
+org.eclipse.jst.jee.server\:Notes=C\:\\Users\\lenovo\\Desktop\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\Notes

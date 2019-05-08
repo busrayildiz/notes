@@ -1,0 +1,41 @@
+package com.busra.service;
+
+import java.util.ArrayList;
+
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.busra.dao.NoteDAO;
+import com.busra.entity.Note;
+
+@Service
+@Transactional
+public class NoteService {
+
+	@Autowired
+	private NoteDAO noteDAO;
+
+	public Long createNote(Note note) {
+		return noteDAO.insert(note);
+	}
+
+	public ArrayList<Note> getAll(){
+
+		return  noteDAO.getAll() ;
+	}
+
+	public ArrayList<Note> getAll(Long userId){
+
+		return  noteDAO.getAll(userId);
+	}
+	
+	public Note getNoteById(Long id){
+		
+		return noteDAO.getFindById(id);
+	}
+	
+
+}

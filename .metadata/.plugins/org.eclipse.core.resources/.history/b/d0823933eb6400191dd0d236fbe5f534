@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/mvc">
+	<context:component-scan
+		base-package="com.busra.*" />
+	<context:annotation-config />
+	<annotation-driven />
+	<resources location="/" mapping="/**" />
+
+	<context:property-placeholder
+		location="classpath:application.properties" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+
+
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property value="/WEB-INF/views/" name="prefix" />
+		<beans:property value=".jsp" name="suffix" />
+	</beans:bean>
+
+
+	<beans:bean
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+ 
+ <!--		<beans:property value="${database.driverClass}"
+			name="driverClass" />
+			 -->
+		<beans:property value="${database.jdbcUrl}"
+			name="jdbcUrl" />
+		<beans:property value="${database.username}"
+			name="user" />
+		<beans:property value="${database.password}"
+			name="password" />
+
+	</beans:bean>
+
+
+	<beans:bean
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		id="sessionFactory">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="hibernateProperties">
+
+			<beans:props>
+				<beans:prop key="hibernate.dialect">${hibernate.dialect}</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</beans:prop>
+				<beans:prop key="hibernate.show_sql">${hibernate.show_sql}</beans:prop>
+				<beans:prop key="hibernate.format_sql">${hibernate.format_sql}</beans:prop>
+			</beans:props>
+
+		</beans:property>
+
+		<beans:property value="com.busra.entity"
+			name="packagesToScan" />
+
+	</beans:bean>
+
+
+	<beans:bean
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+		id="hibernateTransactionManager">
+		<beans:property name="sessionFactory"
+			ref="sessionFactory" />
+	</beans:bean>
+
+	<tx:annotation-driven
+		transaction-manager="hibernateTransactionManager" />
+
+
+	<beans:bean
+		class="org.springframework.mail.javamail.JavaMailSenderImpl"
+		id="mailSender">
+		<beans:property value="smtp.gmail.com" name="host" />
+		<beans:property value="smtp" name="protocol" />
+		<beans:property value="587" name="port" />
+		<beans:property value="egitimeespring" name="username" />
+		<beans:property value="Java123." name="password" />
+
+
+		<beans:property name="javaMailProperties">
+
+
+			<beans:props>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.smtp.debug">true</beans:prop>
+				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+
+			</beans:props>
+
+		</beans:property>
+
+	</beans:bean>
+
+</beans:beans>

@@ -1,0 +1,27 @@
+$(document).ready(function(){
+	
+	$.ajax({
+		type:"POST" , 
+		url:"getNotes",
+		success : function(data){
+			var list = "";
+			$(data).each(function(i,val){
+				list = list + 
+				'<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">'
+				'<h2 class="fh5co-article-title"><a href="single.html">${note.title}</a></h2> '
+				'<h3><a href="single.html"  style="color:#999999">${note.content}</a></h3>'
+				'<span class="fh5co-meta fh5co-date">24 Nisan 2019</span>'
+			    '</article>'
+				
+				alert(val.title);	
+			});
+			
+			alert(data);
+		
+		},error:function(data){
+			alert(data);
+		}
+	});
+	
+	
+});

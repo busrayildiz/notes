@@ -1,0 +1,5 @@
+package com.busra.dao;
+
+public class NoteDAO {
+
+}

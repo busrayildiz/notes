@@ -1,0 +1,48 @@
+package com.busra.service;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.busra.dao.UserDAO;
+import com.busra.entity.User;
+
+@Service
+@Transactional
+public class UserService {
+	
+	@Autowired
+	private MailService mailService;
+	
+	@Autowired
+	private UserDAO userDAO;
+	
+	//CRUD
+	
+	public Long insert(User user) {
+		
+		String uuid = UUID.randomUUID().toString();
+		user.setKey(uuid);
+		if(userDAO.insert(user)<0) {
+			mailService.registerMail(user.getEmail(), user.getKey());
+		}			 
+		return 1l ;
+	}
+	
+	public void update(User user) {
+		userDAO.update(user);
+	}
+
+	public User getNoteByUnameAndPass(String username , String pass ){
+		return userDAO.getNoteByUnameAndPass(username, pass);
+		
+	}
+	
+	public User getNoteByUname(String username ){
+		
+		return userDAO.getNoteByUname(username);
+	}
+	
+}

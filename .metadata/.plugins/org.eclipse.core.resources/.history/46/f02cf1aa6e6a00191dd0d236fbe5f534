@@ -1,0 +1,19 @@
+$(document).ready(function(){
+	
+	getNote();
+	
+});
+
+function getNote(){
+	$.ajax({
+		type:"POST" , 
+		url:"getNote",
+		contentType:"text/plain",
+		data:$("#id").val()+"",
+		success : function(data){
+			alert(data.title);
+		},error:function(data){
+			alert(data);
+		}
+	});
+}

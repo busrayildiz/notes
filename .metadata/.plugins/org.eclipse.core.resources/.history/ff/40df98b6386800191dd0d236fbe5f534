@@ -1,0 +1,5 @@
+package com.busra.endpoint;
+
+public class NoteEndPoint {
+
+}
