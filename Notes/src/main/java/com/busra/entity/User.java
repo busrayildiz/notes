@@ -18,7 +18,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", name=" + name + ", surname=" + surname + ", email="
+		return "User [id=" + id + ", username=" + username + ", name=" + name + ", surname=" + surname + ", email="
 				+ email + ", pass=" + pass + ", active=" + active + ", createDate=" + createDate + ", keyReg=" + keyReg
 				+ ", pass2=" + pass2 + "]";
 	}
@@ -27,7 +27,7 @@ public class User {
 	private Long id;
 	
 	@Column(nullable=false)
-	private String userName;
+	private String username;
 	public Long getId() {
 		return id;
 	}
@@ -35,10 +35,10 @@ public class User {
 		this.id = id;
 	}
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 	public String getName() {
 		return name;

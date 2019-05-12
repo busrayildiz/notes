@@ -25,7 +25,7 @@ public class UserService {
 		
 		String uuid = UUID.randomUUID().toString();
 		user.setKeyReg(uuid);
-		if(userDAO.insert(user)<0) {
+		if(userDAO.insert(user)>0) {
 			mailService.registerMail(user.getEmail(), user.getKeyReg());
 		}			 
 		return 1l ;
@@ -35,18 +35,18 @@ public class UserService {
 		userDAO.update(user);
 	}
 
-	public User getFindByUnameAndPass(String username , String pass ){
-		return userDAO.getNoteByUnameAndPass(username, pass);
+	public User getFindByUnameAndPass(User user ){
+		return userDAO.getUserByUnameAndPass(user.getUserName(), user.getPass());
 		
 	}
 	
 	public User getFindByUname(String username ){
 		
-		return userDAO.getNoteByUname(username);
+		return userDAO.getUserByUname(username);
 	}
 	
 public boolean getFindByKey(String key ){
-		User user = userDAO.getNoteByKey(key);
+		User user = userDAO.getUserByKey(key);
 		if( user!=null) {
 			user.setActive(true);
 			update(user);

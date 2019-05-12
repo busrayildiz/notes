@@ -34,6 +34,7 @@ public class LoginController {
 		}
 		return "login";
 	}
+
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
@@ -51,6 +52,21 @@ public class LoginController {
 	}
 	
 	
+	@RequestMapping(value = "/controlUser", method = RequestMethod.POST)
+	public ResponseEntity<String> controlUser(@RequestBody User user , HttpServletRequest request) {
+	
+		
+			if(userService.getFindByUnameAndPass(user) != null) {
+				return new ResponseEntity<String>("OK",HttpStatus.OK);
+			}
+		    
+			return new ResponseEntity<String>("ERROR",HttpStatus.OK);
+		
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public ResponseEntity<String> addUser(@RequestBody User user , HttpServletRequest request) {
 		
@@ -59,20 +75,20 @@ public class LoginController {
 		if(status != 0) {
 			return new ResponseEntity<String>(status+"",HttpStatus.OK);
 		}
-		System.out.println(user.toString());
 		
-		if(userService.insert(user).equals(1l)) {
-			return new ResponseEntity<String>("OK",HttpStatus.CREATED);
-
-		}
+			if(userService.insert(user).equals(1l)) {
+				return new ResponseEntity<String>("OK",HttpStatus.CREATED);
+			}
+		    
+			return new ResponseEntity<String>("ERROR",HttpStatus.CREATED);
 		
-		return new ResponseEntity<String>("ERROR",HttpStatus.CREATED);
 	}
 	
 	private int control (User user) {
-		if(user.getPass2().equals(user.getPass())) {
-			return 1; 
+		if(user.getPass().equals(user.getPass2())) {
+			return 0; 
+		
 		}else
-		return 0 ;
+		return 1 ;
 	}
 }
