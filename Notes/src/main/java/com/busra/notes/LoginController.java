@@ -54,12 +54,14 @@ public class LoginController {
 	
 	@RequestMapping(value = "/controlUser", method = RequestMethod.POST)
 	public ResponseEntity<String> controlUser(@RequestBody User user , HttpServletRequest request) {
+		
+		User userm = userService.getFindByUnameAndPass(user);
+		if(userm!=null) {
+			request.getSession().setAttribute("user", userm);
+			return new ResponseEntity<String>("OK",HttpStatus.OK);
+		}
 	
 		
-			if(userService.getFindByUnameAndPass(user) != null) {
-				return new ResponseEntity<String>("OK",HttpStatus.OK);
-			}
-		    
 			return new ResponseEntity<String>("ERROR",HttpStatus.OK);
 		
 	}

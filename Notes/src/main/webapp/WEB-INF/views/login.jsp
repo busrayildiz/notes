@@ -62,7 +62,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" id="registerBtn">
+							<button class="login100-form-btn" id="registerBtn" onclick="loginBtn()">
 								Giriş
 							</button>
 							
@@ -98,5 +98,6 @@
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
 
+	<script src="custom/login.js"></script>
 </body>
 </html>

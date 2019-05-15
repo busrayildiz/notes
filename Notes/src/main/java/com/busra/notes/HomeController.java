@@ -36,12 +36,14 @@ public class HomeController {
 	private MailService mailService;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Model model , HttpServletRequest req) {
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 		
 		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("user" , req.getSession().getAttribute("user"));
 		
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("title", "Blog Posts" );

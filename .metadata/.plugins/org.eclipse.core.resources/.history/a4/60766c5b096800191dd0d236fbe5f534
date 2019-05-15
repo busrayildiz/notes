@@ -1,9 +1,0 @@
-database.driverClass=com.mysql.cj.jdbc.Driver
-database.jdbcUrl=jdbc:mysql://localhost:3306/javaee?useSSL=false&useOldAliasMetadataBehavior=true&useUnicode=true&characterEncoding=UTF-8
-database.username=hbstudent
-database.password=hbstudent
-
-hibernate.dialect=org.hibernate.dialect.MySQLDialect
-hibernate.hbm2ddl.auto=update
-hibernate.show_sql=true
-hibernate.format_sql=true

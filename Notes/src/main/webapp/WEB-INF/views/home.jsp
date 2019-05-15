@@ -48,7 +48,7 @@
 				<img src="images/person1.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive">
 			</figure>
 			<h3 class="heading">Hakkımda</h3>
-			<h2>Büşra Yıldız</h2>
+			<h2>${user.name}${user.surname}</h2>
 			<p></p>
 			
 		</div>
